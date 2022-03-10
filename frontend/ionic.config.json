@@ -1,0 +1,7 @@
+{
+  "name": "hututoo",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

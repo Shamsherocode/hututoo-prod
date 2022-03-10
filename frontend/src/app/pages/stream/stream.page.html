@@ -1,0 +1,78 @@
+<ion-header [translucent]="false" class="ion-no-border">
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+   <ion-title text-center><img class="logo" src="assets/images/hututoo-logo.png"></ion-title>
+
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<div class="inner_contnet">
+<div class="cat_section">
+      <p class="cat_title_full">Streams</p>
+      <p class="cat_sub_title">Your streams history is available in this page.</p>
+</div>
+
+
+
+<div class="event_comments">
+
+        <div class="event_comment"  *ngFor="let data of allComments" >
+        <div class="{{data.slot}}" (click)="showOptions(data)">
+            <p class="with_icon"  >
+            <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+            <span class="item_title">{{data.author}}</span>
+            <span class="item_description">{{data.comment}}</span>
+            </p>
+
+            <p >
+            <span class="item_time">{{data.time}}</span>
+            <span class="item_board"> - on {{data.event}}</span>
+            </p>
+         </div>
+
+
+            <div class="action_section" *ngIf="data.showOption">
+            <p class="left"  (click)="addLike(data)">{{data.like}} <ion-icon name="star-outline"></ion-icon></p>
+            <p class="right" (click)="showCommentTextBox(data)">{{data.comment_count}} <ion-icon name="chatbox-ellipses-outline"></ion-icon> Comments</p>
+            </div>
+          </div>
+
+
+</div>
+
+
+</div>
+</ion-content>
+
+<ion-footer>
+<form *ngIf="showCommentBox" #form="ngForm" (ngSubmit)="onSubmitComment(form)" method="post">
+<ion-input ngModel type="text" name="comment" class="comment_input" placeholder="Enter comment"></ion-input>
+<p class="comment_submit" (click)="onSubmitComment(form)"></p>
+</form>
+
+<ion-row>
+        <ion-col no-padding routerLink="/stream">
+            <ion-icon color="favorite" name="chatbubble-ellipses-outline"></ion-icon>
+        </ion-col>
+
+        <ion-col no-padding routerLink="/search">
+            <ion-icon name="search-outline"></ion-icon>
+        </ion-col>
+
+        <ion-col no-padding routerLink="/landing">
+            <ion-icon name="home-outline"></ion-icon>
+        </ion-col>
+
+        <ion-col no-padding routerLink="/activity">
+            <ion-icon name="list-outline"></ion-icon>
+        </ion-col>
+    </ion-row>
+
+
+
+</ion-footer>

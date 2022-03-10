@@ -1,0 +1,22 @@
+<Directory /var/www/django-api/django-rest-api/angular_web_app/angular_web_app>
+        <Files wsgi.py>
+                Require all granted
+        </Files>
+        </Directory>
+
+        WSGIDaemonProcess angular_web_app python-home=/var/www/django-api/api python-path=/var/www/django-api/django-rest-api/angular_web_app/angular_web_app
+        WSGIProcessGroup angular_web_app
+        WSGIScriptAlias / /var/www/django-api/django-rest-api/angular_web_app/angular_web_app/wsgi.py
+
+
+Alias /static /var/www/django-api/django-rest-api/angular_web_app/angular_web_app/static
+	<Directory /var/www/django-api/django-rest-api/angular_web_app/angular_web_app/static>
+		Require all granted
+	</Directory>
+
+
+    chmod 664 angular_web_app/db.sqlite3
+
+    sudo chown :www-data angular_web_app/db.sqlite3
+
+    sudo chown :www-data angular_web_app

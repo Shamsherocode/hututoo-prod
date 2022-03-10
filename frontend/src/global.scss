@@ -1,0 +1,199 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+
+
+.cat_section{
+width:100%;
+float:left;
+margin-bottom:15px;
+}
+.inner_contnet{
+padding:15px;
+float: left;
+width: 100%;
+}
+.cat_title{
+margin: 0;
+font-size:22px;
+font-weight: 600;
+width:50%;
+float:left;
+padding: 10px 0px 0px 0px;
+}
+.cat_link{
+padding: 15px 0px 0px 0px;
+margin: 0;
+width:50%;
+float:left;
+text-align:right;
+text-decoration:none;
+}
+
+.cat_title_full{
+padding: 10px 0px 0px 0px;
+float:left;
+width:100%;
+text-align:center;
+font-size:22px;
+font-weight: 600;
+margin: 0;
+}
+.cat_sub_title{
+margin: 0;
+padding: 10px 0px 0px 0px;
+float:left;
+width:100%;
+text-align:center;
+font-size:16px;
+font-weight: 400;
+}
+
+.event_detail{
+font-weight:600;
+}
+ion-header {
+    box-shadow: 0 0.46875rem 2.1875rem rgb(59 62 102 / 3%), 0 0.9375rem 1.40625rem rgb(59 62 102 / 3%), 0 0.25rem 0.53125rem rgb(59 62 102 / 5%), 0 0.125rem 0.1875rem rgb(59 62 102 / 3%);
+}
+ion-footer{
+padding:10px;
+border-top:2px solid #ddd;
+background: #F6F6F6
+}
+ion-footer ion-col{
+text-align:center;
+}
+ion-footer ion-icon{
+font-size:25px;
+}
+
+ion-button{
+    --border-radius: 5px;
+}
+
+.withpadding{
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.onlymargin{height: 20px;}
+.text-center{
+  text-align:center
+}
+.text-left{
+  text-align:left
+}
+.text-right{
+  text-align:right
+}
+
+img.logo {
+    max-width: 40%;
+    border: 0;
+    margin: 2%;
+}
+
+ion-progress-bar {
+    --background: #072875;
+    --buffer-background: #eb445a;
+    --progress-background: #072875;
+  }
+.ion-color-favorite {
+  --ion-color-base: var(--ion-color-favorite);
+  --ion-color-base-rgb: var(--ion-color-favorite-rgb);
+  --ion-color-contrast: var(--ion-color-favorite-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-favorite-contrast-rgb);
+  --ion-color-shade: var(--ion-color-favorite-shade);
+  --ion-color-tint: var(--ion-color-favorite-tint);
+}
+.event_analytics{
+    color: #c1c1c1;
+    font-size: 14px;
+    padding:13px 0px;
+
+}
+.event_analytics ion-icon{
+color: #000;
+font-size: 25px;
+vertical-align: middle;
+}
+
+
+
+.my-custom-modal{
+--height:60%;
+}
+ion-menu-toggle ion-item.Search,
+ion-menu-toggle ion-item.Stream{
+display:none
+}
+@media screen and (min-width: 600px) {
+
+ion-menu-toggle ion-item.Search,
+ion-menu-toggle ion-item.Stream{
+display:block
+}
+ion-footer{
+padding:0px;
+}
+ion-footer ion-row{
+display:none;
+}
+ion-footer form
+{
+    padding-top: 10px!important;
+    margin-bottom:0px!important;
+}
+
+
+ion-content{
+--background: #f4f5fd;
+
+}
+.inner_contnet {
+    margin: 5%;
+    background: #fff;
+    float: left;
+    width: 90%;
+    min-height: 100%;
+    padding: 20px
+}
+
+ion-title {
+    text-align: center!important;
+    margin-left: -200px!important;
+}
+
+ion-menu {
+    max-width: 200px!important;
+}
+
+img.logo{
+    max-width: 130px;
+    margin: 25px;
+}
+
+}

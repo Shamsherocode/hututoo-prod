@@ -1,0 +1,89 @@
+<ion-header [translucent]="false" class="ion-no-border">
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+   <ion-title text-center><img class="logo" src="assets/images/hututoo-logo.png"></ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<div class="inner_contnet">
+   <div class="list-thumbnail">
+    <div class="img-thumb">
+      <img src="assets/images/business-event-banner.jpg">
+      <p class="event_detail">{{eventDetail.description}}</p>
+      <ion-progress-bar  value="{{((eventDetail.fav_count/(eventDetail.fav_count+eventDetail.unfav_count))*100)/100}}"></ion-progress-bar>
+
+      <div class="event_analy">
+      <p class="event_analytics"><ion-icon name="analytics-outline"></ion-icon> Favor {{(eventDetail.fav_count/(eventDetail.fav_count+eventDetail.unfav_count))*100}}% Againest {{(eventDetail.unfav_count/(eventDetail.fav_count+eventDetail.unfav_count))*100}}%</p>
+      </div>
+    </div>
+
+
+  <div class="event_predict" *ngIf="!eventDetail.pridicted">
+      <p>Pridict to comment and see results</p>
+      <div class="event_predict_btn">
+          <ion-button type="button" size="default" expand="full" color="favorite" (click)="pridictEvent('favorite')" >YES</ion-button>
+      </div>
+      <div class="event_predict_btn">
+          <ion-button type="button" size="default" expand="full"  color="danger" (click)="pridictEvent('danger')">NO</ion-button>
+      </div>
+
+
+      </div>
+
+  <div class="event_predict" *ngIf="eventDetail.pridicted">
+
+      <div class="event_comments">
+      <ion-list>
+        <ion-item class="{{data.slot}}" lines="none" *ngFor="let data of allComments">
+          <ion-thumbnail slot="{{data.slot}}">
+            <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+          </ion-thumbnail>
+            <ion-note>{{data.id}} {{data.comment}}</ion-note>
+          </ion-item>
+      </ion-list>
+
+      </div>
+      </div>
+
+ </div>
+
+</div>
+
+
+</ion-content>
+
+
+<ion-footer>
+<form *ngIf="eventDetail.pridicted" #form="ngForm" (ngSubmit)="onSubmitComment(form)" method="post">
+<ion-input ngModel type="text" name="comment" class="comment_input" placeholder="Enter comment"></ion-input>
+<p class="comment_submit" (click)="onSubmitComment(form)"></p>
+</form>
+
+<ion-row>
+        <ion-col no-padding routerLink="/stream">
+            <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+        </ion-col>
+
+        <ion-col no-padding routerLink="/search">
+            <ion-icon name="search-outline"></ion-icon>
+        </ion-col>
+
+        <ion-col no-padding routerLink="/landing">
+            <ion-icon name="home-outline"></ion-icon>
+        </ion-col>
+
+        <ion-col no-padding routerLink="/activity">
+            <ion-icon name="list-outline"></ion-icon>
+        </ion-col>
+    </ion-row>
+
+
+
+</ion-footer>
+
+
+

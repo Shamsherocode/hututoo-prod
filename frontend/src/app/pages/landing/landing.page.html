@@ -1,0 +1,74 @@
+<ion-header [translucent]="false" class="ion-no-border">
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+   <ion-title text-center><img class="logo" src="assets/images/hututoo-logo.png"></ion-title>
+
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<div class="inner_contnet">
+<div  *ngFor="let catitem of allCategory">
+<div class="cat_section">
+      <p class="cat_title">{{catitem.name}}</p>
+      <a class="cat_link" (click)="viewAllEvents(catitem.id)">view all...</a>
+</div>
+
+<div class="inner_contnet_slider">
+<ion-slides pager="false" [options]="slideOpts">
+        <ion-slide  *ngFor="let data of allEvents" (click)="pridictEvent(data)">
+
+        <div class="inner_contnet_slide">
+          <img src="assets/images/business-event-banner.jpg">
+
+          <p class="event_detail">{{data.description}}</p>
+
+          <ion-progress-bar value="{{data.fav_percentage/100}}"></ion-progress-bar>
+
+          <div class="event_analy">
+            <p class="event_analytics"><ion-icon name="analytics-outline"></ion-icon> Favor {{data.fav_percentage}}% Againest {{100-data.fav_percentage}}%</p>
+            <ion-button type="button" size="small" expand="full" color="primary" (click)="pridictEvent(data)">Predict</ion-button>
+          </div>
+      </div>
+
+      </ion-slide>
+
+</ion-slides>
+
+</div>
+
+</div>
+</div>
+
+
+
+
+
+</ion-content>
+
+<ion-footer>
+<ion-row>
+        <ion-col no-padding routerLink="/stream">
+            <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+        </ion-col>
+
+        <ion-col no-padding routerLink="/search">
+            <ion-icon name="search-outline"></ion-icon>
+        </ion-col>
+
+        <ion-col no-padding routerLink="/landing">
+            <ion-icon color="favorite" name="home-outline"></ion-icon>
+        </ion-col>
+
+        <ion-col no-padding routerLink="/activity">
+            <ion-icon name="list-outline"></ion-icon>
+        </ion-col>
+    </ion-row>
+
+
+
+</ion-footer>

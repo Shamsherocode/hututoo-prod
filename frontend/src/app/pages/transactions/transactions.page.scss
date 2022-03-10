@@ -1,0 +1,111 @@
+.cat_section{
+width:100%;
+float:left;
+}
+.cat_title{
+padding: 10px 0px 0px 0px;
+}
+
+
+
+  .list-items{
+    float: left;
+    width: 100%;
+    padding: 15px;
+    border-color: #f4f5fd !important;
+    background-color: #f8f9ff !important;
+    border-width: 1px !important;
+    border-style: solid;
+
+    .list-item{
+    display: block;
+    font-size: 12px;
+    width: 100%;
+    white-space: break-spaces;
+    border-bottom: 1px solid #e2e2e2;
+    margin: 0px 0px 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    float: left;
+    }
+
+
+  }
+  
+.trnaction_date{
+padding: 15px 0px 0px 0px;
+float:left;
+width:100%;
+text-align:left;
+font-size:18px;
+font-weight: 600;
+margin: 0;
+}
+.list-item p{
+margin:0px;
+}
+span.item_title{
+font-size:14px;
+font-weight: 600;
+}
+span.item_description{
+font-size:12px;
+margin:0px 5px;
+}
+span.item_time{
+font-size:12px;
+font-weight: 600;
+}
+span.item_board{
+font-size:12px;
+font-weight: 600;
+}
+.transactions-list{
+    float: left;
+    width: 100%;
+    padding:0;
+    
+}
+.list-item p.with_icon img{
+float:right;
+margin-left: 10px;
+}
+
+.list-item p.with_icon ion-icon{
+    float: right;
+    font-size: 25px;
+}
+.list-item p.with_icon.positive .add-circle{
+display:block;
+color:green;
+}
+.list-item p.with_icon.positive .remove-circle{
+display:none;
+}
+
+.list-item p.with_icon.negative .add-circle{
+display:none;
+}
+.list-item p.with_icon.negative .remove-circle{
+display:block;
+color:red;
+}
+
+
+
+@media screen and (min-width: 600px) {
+
+
+.list-items{
+    .list-item{
+      width:31.33%;
+      float:left;
+      margin-right:2%;
+    }
+
+
+  }
+
+}
+

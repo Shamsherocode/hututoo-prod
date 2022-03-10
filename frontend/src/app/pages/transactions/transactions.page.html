@@ -1,0 +1,68 @@
+<ion-header [translucent]="false" class="ion-no-border">
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+   <ion-title text-center><img class="logo" src="assets/images/hututoo-logo.png"></ion-title>
+
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+<div class="inner_contnet">
+<div class="cat_section">
+      <p class="cat_title_full">Transactions</p>
+      <p class="cat_sub_title">Your account history is available in this page.</p>
+</div>
+
+<div class="transactions-list"  *ngFor="let dateitem of allDates">
+
+<div class="cat_section">
+      <p class="trnaction_date">{{dateitem.date}}</p>
+</div>
+
+<div class="list-items">
+    <div class="list-item" *ngFor="let transaction of allTransactions">
+      <p class="with_icon" class="{{transaction.type}}">
+      <ion-icon class="remove-circle" name="remove-circle-outline"></ion-icon>
+      <ion-icon class="add-circle" name="add-circle-outline"></ion-icon>
+      <span class="item_title">{{transaction.title}}</span>
+      <span class="item_description">{{transaction.description}}</span>
+      </p>
+      
+    </div>
+</div>
+
+
+</div>
+<div class="cat_section">
+      <p class="trnaction_date"></p>
+</div>
+</div>
+
+</ion-content>
+
+<ion-footer>
+<ion-row>
+        <ion-col no-padding routerLink="/stream">
+            <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+        </ion-col>
+
+        <ion-col no-padding routerLink="/search">
+            <ion-icon name="search-outline"></ion-icon>
+        </ion-col>
+
+        <ion-col no-padding routerLink="/landing">
+            <ion-icon name="home-outline"></ion-icon>
+        </ion-col>
+
+        <ion-col no-padding routerLink="/activity">
+            <ion-icon name="list-outline"></ion-icon>
+        </ion-col>
+    </ion-row>
+
+
+
+</ion-footer>

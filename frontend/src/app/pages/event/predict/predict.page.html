@@ -1,0 +1,35 @@
+<ion-content>
+<div class="modal_heading">
+<div class="modal_heading_thumb"><img src="assets/images/business-event-banner.jpg"></div>
+<div class="modal_heading_desc">{{event.description}}</div>
+</div>
+<div class="modal_quantity">
+<form #form="ngForm" (ngSubmit)="submitForm(form)" method="post">
+
+
+        <div class="quantity_section">
+        <p>Qunatity</p>
+        <ion-icon class="add_qunatity" name="remove-outline" (click)="removeWunatity(form)"></ion-icon>
+        <ion-input type="number"  [(ngModel)]="selectdQty" name="qunatity" value="{{selectdQty}}"></ion-input>
+        <ion-icon class="remove_qunatity" name="add-outline" (click)="addWQnatity(form)"></ion-icon>
+        </div>
+        <div class="divider"></div>
+        <div class="quantity_details">
+
+        <div class="modal_quantity_left">
+        <p>{{selectdQty}}</p>
+        <p>Total Qunatity</p>
+        </div>
+        <div class="modal_quantity_left">
+        <p>{{selectdQty*event.point}}</p>
+        <p>Total Point</p>
+        </div>
+
+        </div>
+
+<p>
+<ion-button type="submit" expand="block" size="large" color="{{option}}">Submit to Predict</ion-button>
+</p>
+</form>
+</div>
+</ion-content>

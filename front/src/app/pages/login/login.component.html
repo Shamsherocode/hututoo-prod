@@ -1,0 +1,340 @@
+<style>
+  .form-control{border-color:#DDDDDD!important;}
+  .input-group .form-control:not(:first-child):not(:last-child), .input-group-btn:not(:first-child):not(:last-child){
+      border-top-right-radius: 0!important;
+       border-bottom-right-radius: 0!important; 
+  }
+  h4.header{margin-top:0px;}
+  small, .small {
+      margin-bottom: 10px;
+      float: left;
+  }
+  </style>
+  <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+    <div class="container" >
+      <div class="navbar-wrapper">
+        <div class="navbar-toggle" (click)="sidebarToggle()">
+          <button type="button" class="navbar-toggler">
+            <span class="navbar-toggler-bar bar1"></span>
+            <span class="navbar-toggler-bar bar2"></span>
+            <span class="navbar-toggler-bar bar3"></span>
+          </button>
+        </div>
+        <!-- <img src="./assets/img/logo(1).png" alt="image" style="margin: left 110px; height: 50px; opacity: 0.6;"> -->
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-bar navbar-kebab"></span>
+        <span class="navbar-toggler-bar navbar-kebab"></span>
+        <span class="navbar-toggler-bar navbar-kebab"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navigation">
+      </div>
+    </div>
+  </nav>
+  <div class="text-white bg-dark">
+  <div class="wrapper wrapper-full-page">
+    <div class="full-page" style="color: #1e4b63">
+      <div class="content">
+        <div class="container">
+          <div class="col-lg-4 col-md-6 ml-auto mr-auto">
+  
+            <div class="card card-login">
+              <div class="card-header ">
+                <div class="card-header ">
+                  <h4 class="header text-center">{{this.formHeading}}</h4>
+                </div>
+              </div>
+  
+            <!-- login form -->
+            <div *ngIf="formName=='login'">
+            <form #f1="ngForm" novalidate  (ngSubmit)="loginSubmit(f1.value, f1.valid)">
+              
+                <div class="card-body ">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="nc-icon nc-single-02"></i>
+                      </span>
+                    </div>
+                   <input type="text" class="form-control" name="username" [ngModel]="login.username" required  #username="ngModel" placeholder="Username">
+                   
+                  </div>
+                  <small [hidden]="username.valid || (username.pristine && !f1.submitted)" class="text-danger">
+                                    Username is required.
+                                  </small>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="nc-icon nc-lock-circle-open"></i>
+                      </span>
+                    </div>
+                     <input type="{{this.passwordType}}" class="form-control" name="password"  [ngModel]="login.password" required validateEqual="confirmPassword" reverse="true" #password="ngModel" placeholder="Password">
+                     <div class="input-group-append">
+                      <span class="input-group-text">
+                        <i class="{{this.iconType}}" style="margin-left: 4px;" (click)="TogglePasswordType()"></i>
+                      </span>
+                    </div>
+                    </div>
+                   <small [hidden]="password.valid || (password.pristine && !f1.submitted)" class="text-danger">
+                                    Password is required
+                                  </small>
+                    <div style="text-align: right; font-size: small;">
+                        <a href="#" (click)="forgetPassword()">Forgot Password?</a>
+                  </div>
+                  
+                  
+                </div>
+               
+  
+                <div class="card-footer">
+                <small class="text-danger">{{this.message}}</small>
+                  <div *ngIf="loading"><button class="btn btn-warning btn-round btn-block mb-3">
+                  <i class="fa fa-spinner fa-spin"  style="align-items: center;"></i></button>
+                  </div>
+                   <div *ngIf="!loading">
+                   <button type="submit" class="btn btn-warning btn-round btn-block mb-3">Sign in</button>
+                   </div>
+                </div>
+  
+            </form>
+            </div>
+            <!-- end -->
+  
+            <!-- forget password form -->
+            <div *ngIf="formName=='forgotPassForm'">
+                <form #f2="ngForm" novalidate  (ngSubmit)="submitForgotPassword(f2.value, f2.valid)">
+  
+                   
+                    <div style="text-align: right; font-size: small; padding-right: 4%; color: darkgray;">
+                      <span>Step {{this.forgotPassStep}}/4</span>
+                  </div>
+                    
+                    <div *ngIf="forgotPassStep==1">
+                    <div class="card-body ">
+                      
+                      <div class="input-group">
+                        
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="nc-icon nc-single-02"></i>
+                          </span>
+                        </div>
+                       <input type="text" class="form-control" name="username" [ngModel]="login.username" required  #username="ngModel" placeholder="Username">
+                       
+                      </div>
+                      <small [hidden]="username.valid || (username.pristine && !submitted)" class="text-danger">
+                          Username is required.
+                      </small>
+                     
+                      
+                      <div style="text-align: right; font-size: small;">
+                        <a href="#" (click)="usernameRedirect()">Forgot Username?</a>
+                      </div>
+                      
+                    </div>
+                    </div>
+                    
+                    <div *ngIf="forgotPassStep==2">
+                    <span style="padding-left: 5%;">Answer Your Secret Question</span>
+                    <div class="card-body ">
+                  
+                     <div class="input" style="margin-bottom:10px;">
+                       <select class="form-control">
+                          <option value=`{{this.ques[0]}}` aria-readonly="true">{{this.ques[1]}}</option>
+                      </select>
+                    </div>
+                  
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">
+                          <i class="nc-icon nc-bulb-63"></i>
+                        </span>
+                      </div>
+                     <input ype="text" class="form-control" name="answer" [ngModel]="forgetPass.answer" required  #answer="ngModel" placeholder="Answer" autocomplete="off">    
+                    </div>
+                    <small [hidden]="answer.valid || (answer.pristine && !submitted)" class="text-danger">
+                      Answer is required.
+                    </small>
+  
+                  <div style="text-align: right; font-size: small;">
+                    <a href="#" (click)="loginRedirect()">Sign in</a>
+                </div>
+  
+                </div>
+                    </div>
+                    
+                    <div *ngIf="forgotPassStep==3">
+                    
+                    <span style="padding-left: 5%;">Receive Verification Code</span>
+                  <div class="card-body">
+                          <input type="radio" id="css" name="selectedOption" [ngModel]="forgetPass.selectedOption" required  #selectedOption="ngModel" value=1 style="margin-top: 10px;">
+                          <label for="css" style="color: black; font-size: 0.971em;"> Email to address {{this.cred[0]}}</label><br>
+                          <input type="radio" id="javascript" name="selectedOption" [ngModel]="forgetPass.selectedOption" required  #selectedOption="ngModel" value=2>
+                          <label for="javascript" style="color: black; font-size: 0.981em;">SMS to phone number {{this.cred[1]}}</label>
+  
+                    <div style="text-align: right; font-size: small;">
+                      <a href="#" (click)="loginRedirect()">Sign in</a>
+                  </div>
+                  <small [hidden]="selectedOption.valid || (selectedOption.pristine && !submitted)" class="text-danger">
+                    Please Select..
+                  </small>
+  
+                  </div>
+                  
+                    
+                    </div>
+                    
+                    <div *ngIf="forgotPassStep==4">
+                    <span style="padding: 5%;float:left;width:100%;text-align:left;font-size:12px;">Please retrieve the security code form your email account. Remember to check your spam folder if you cannot see the message in your inbox.</span>
+                    <div class="card-body ">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="nc-icon nc-key-25"></i>
+                          </span>
+                        </div>
+                       <input type="text" class="form-control" name="secretcode" [ngModel]="forgetPass.secretcode" required  #secretcode="ngModel" placeholder="Secret Code">
+                      </div>
+                      <small [hidden]="secretcode.valid || (secretcode.pristine && !submitted)" class="text-danger">
+                        Secret Code is required.
+                      </small>
+  
+                      <div style="text-align: right; font-size: small;">
+                         <button type="button" (click)="resendOTP()" style="border: 0px;background: none;color:#3D5A80;margin-bottom:10px;">Resend OTP</button>
+                      </div>
+  
+                      <div class="input-group mb-3" >
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="nc-icon nc-lock-circle-open"></i>
+                          </span>
+                        </div>
+                         <input type="{{this.passwordType1}}" onCopy="return false" onPaste="return false" class="form-control" name="newpassword" [ngModel]="forgetPass.newpassword" required  #newpassword="ngModel" placeholder="New Password">
+                         <div class="input-group-append">
+                          <span class="input-group-text">
+                            <i class="{{this.iconType1}}" style="margin-left: 4px;" (click)="TogglePasswordType1()"></i>
+                          </span>
+                        </div>
+                        </div>
+                      <small [hidden]="newpassword.valid || (newpassword.pristine &&  !submitted)" class="text-danger">
+                        New Password is required.
+                      </small>
+                      
+                      <!-- confirm Password -->
+                      <div class="input-group"  [ngClass]="{'input-group-focus':focus2===true}">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="nc-icon nc-lock-circle-open"></i>
+                          </span>
+                        </div>
+                         <input type="{{this.passwordType2}}" onCopy="return false" onPaste="return false" class="form-control" name="newpassword2" [ngModel]="forgetPass.newpassword2" required  #newpassword2="ngModel" placeholder="Confirm Password">
+                         <div class="input-group-append">
+                          <span class="input-group-text">
+                            <i class="{{this.iconType2}}" style="margin-left: 4px;" (click)="TogglePasswordType2()"></i>
+                          </span>
+                        </div>
+                        </div>
+                      <small [hidden]="newpassword2.valid || (newpassword2.pristine  && !submitted)" class="text-danger">
+                        Confirm Password is required.
+                      </small>
+  
+                      <div style="text-align: right; font-size: small;">
+                        <a href="#" (click)="loginRedirect()">Sign in</a>
+                    </div>
+  
+                    </div>
+                    </div>
+                  
+                    
+                    
+                    <div class="card-footer">
+                    <small class="text-danger">{{this.message}}</small>
+                    
+                      <div *ngIf="loading"><button class="btn btn-warning btn-round btn-block mb-3">
+                      <i class="fa fa-spinner fa-spin"  style="align-items: center;"></i></button>
+                      </div>
+                       <div *ngIf="!loading">
+                       <button type="submit" class="btn btn-warning btn-round btn-block mb-3">{{this.forgotPassBtnText}}</button>
+                       </div>
+                    </div>
+  
+                </form>
+            </div>
+            <!-- end -->
+  
+            <!-- Forget Username -->
+            <div *ngIf="formName=='forgetUsername'">
+              <form #f6="ngForm" (ngSubmit)="forgetUsername(f6.value, f6.valid)">
+   
+                  
+                  <div style="text-align: right; font-size: small; padding-right: 4%; color: darkgray;">
+                    <span>Step {{this.forgotUserstep}}/2</span>
+                </div>
+                <div *ngIf="forgotUserstep==1">
+                <div class="card-body">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">
+                          <i class="nc-icon nc-email-85"></i>
+                        </span>
+                      </div>
+                     <input type="email" class="form-control" name="email" [email]="true" [ngModel]="forgetPass.email" required  #email="ngModel" placeholder="Email Address" autocomplete="off">    
+                    </div>
+                    <small [hidden]="email.valid || (email.pristine && !f6.submitted)" class="text-danger">
+                      Please enter valid email into Email field.
+                    </small>
+  
+                  <div style="text-align: right; font-size: small;">
+                    <a href="#" (click)="loginRedirect()">Sign in</a>
+                </div>
+  
+                </div>
+              </div>
+  
+                <div *ngIf="forgotUserstep==2">
+                <div class="card-body">
+                  <span>Check your email for a message from Vision Care Direct
+                    containing your username.</span>
+                </div>
+                </div>
+                
+                  
+  
+                  <div class="card-footer">
+                  <small class="text-danger">{{this.message}}</small>
+                    <div *ngIf="loading"><button class="btn btn-warning btn-round btn-block mb-3">
+                    <i class="fa fa-spinner fa-spin"  style="align-items: center;"></i></button>
+                    </div>
+                     <div *ngIf="!loading">
+                     <button type="submit" class="btn btn-warning btn-round btn-block mb-3">{{this.forgetUserBtnText}}</button>
+                     </div>
+                  </div>
+  
+              </form>
+            </div>
+            <!-- end -->
+  
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <!-- <footer class="footer footer-black  footer-white ">
+        <div class="container">
+          <div class="row">
+            <nav class="footer-nav">
+              <span class="copyright" style="font-size: small;">
+               <i class=""></i> 
+              </span>
+            </nav>
+            <div class="credits ml-auto">
+              <span class="copyright">
+                &copy; 2022 All Rights Reserved.<i class=""></i> 
+              </span>
+            </div>
+          </div>
+        </div>
+      </footer> -->
+    </div>
+  </div>
+  </div>

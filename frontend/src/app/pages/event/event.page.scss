@@ -1,0 +1,220 @@
+
+.cat_section{
+width:100%;
+        float:left;
+}
+.cat_title{
+padding: 10px 10px 0px 10px;
+    margin: 0;
+    font-size:22px;
+        font-weight: 600;
+        width:50%;
+        float:left;
+}
+
+.cat_link{
+padding: 10px 10px 0px 10px;
+  margin: 0;
+    width:50%;
+        float:left;
+        text-align:right;
+}
+
+  .list-thumbnail{
+    float: left;
+    width: 100%;
+    padding: 0px;
+
+    .img-thumb{
+      display: block;
+      font-size:12px;
+      width:100%;
+      white-space: break-spaces;
+    }
+    .img-thumb img{
+     width:100%;
+     height:150px;
+    }
+
+
+  }
+
+
+.event_analy{
+float:left;
+width:100%;
+margin: 5px 0px;
+}
+.event_analy p{
+float:left;
+padding:6px 0px;
+margin:0px;
+}
+.event_analy ion-button{
+float:right;
+}
+
+
+.event_detail{
+    margin: 5px 0px;
+    padding: 0px;
+    font-size: 14px;
+}
+
+
+
+.event_trading{
+    color: #000;
+    font-size: 14px;
+    float: left;
+    padding: 10px 15px 0px;
+    border-top: 1px solid #ddd;
+    width: 100%;
+}
+.event_trading ion-icon{
+color: #000;
+font-size: 25px;
+vertical-align: middle;
+}
+
+
+.event_expiring{
+    color: #000;
+    font-size: 14px;
+    float: right;
+    padding: 10px 15px 0px;
+    border-top: 1px solid #ddd;
+    width: 50%;
+    text-align:right;
+
+}
+.event_expiring ion-icon{
+color: #000;
+font-size: 25px;
+vertical-align: middle;
+}
+
+.event_predict{
+float:left;
+width:100%;
+padding:0px;
+}
+.event_predict p{
+float:left;
+width:100%;
+text-align:center;
+margin:0px;
+padding:0px;
+}
+.event_predict_btn{
+float:left;
+width:50%;
+text-align:center;
+padding:10px 0px;
+}
+.event_comments{
+float:left;
+width:100%;
+}
+
+.event_comments ion-item{
+padding:0px 0px 15px 0px;
+
+}
+.event_comments .end{
+--ion-item-background:rgba(237,56,51,0.3);
+}
+.event_comments .start{
+--ion-item-background:rgba(98,212,112,0.3);
+}
+.event_comments ion-note{
+--color:#000;
+    font-size: 14px;
+}
+.event_comments ion-thumbnail{
+--border-radius:50%;
+height:auto;
+}
+
+.comment_input{
+}
+.comment_submit{
+background:#F6F6F6;
+border:0px;
+background: url("/assets/images/post_comment.jpg");
+background-size: 35px;
+    background-repeat: no-repeat;
+    background-position: right;
+    width: 35px;
+    position: absolute;
+    height: 35px;
+    right: 15px;
+    top: 0;
+    z-index: 9;
+
+}
+ion-footer{
+padding-left:0px;
+padding-right:0px;
+}
+
+ion-footer form{
+    border-bottom: 1px solid #ddd;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-top: 0px;
+    margin-bottom: 10px;
+}
+ion-footer ion-row{
+padding-left:10px;
+padding-right:10px;
+}
+
+@media screen and (min-width: 600px) {
+
+.list-thumbnail {
+    width: 100%;
+}
+.list-thumbnail{
+    .img-thumb img{
+     width: 45%;
+     height: auto;
+     float: left;
+     margin-right: 5%;
+    }
+
+  }
+.event_detail{
+float:right;
+width:50%;
+text-align:left;
+}
+
+ion-progress-bar{
+float: right;
+width: 50%;
+}
+
+.event_analy{
+    float: right;
+    width: 50%;
+}
+
+.event_predict{
+    float: right;
+    width: 50%;
+}
+
+
+.event_comments ion-note{
+    padding: 2% 0;
+}
+
+ion-footer{
+margin:0px 15px 10px 15px;
+width: 93%;
+}
+
+
+}

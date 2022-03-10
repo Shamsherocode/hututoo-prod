@@ -1,0 +1,102 @@
+.modal_heading{
+float:left;
+width:100%;
+padding:25px 15px 0px 15px;
+}
+.modal_heading_thumb{
+float:left;
+width:20%;
+}
+
+.modal_heading_desc{
+float:right;
+width:75%;
+font-size:14px;
+color:#000;
+}
+
+.modal_quantity{
+float:left;
+width:100%;
+margin-top:0px;
+padding:15px 20px;
+text-align:center;
+}
+.modal_quantity p{
+text-align: center;
+float:left;
+width: 100%;
+}
+.quantity_section{
+float:left;
+width:100%;
+padding:0px 75px;
+}
+.modal_quantity ion-icon.add_qunatity{
+float:left;
+width:25%;
+font-size:25px;
+margin-top:5px;
+}
+.modal_quantity ion-icon.remove_qunatity{
+float:right;
+width:25%;
+font-size:25px;
+margin-top:5px;
+}
+.modal_quantity ion-input{
+float:left;
+width:40%;
+margin: 0% 5%;
+border: 1px solid #a6a6b9;
+}
+
+modal_quantity ion-input .native-input{
+padding-inline-end: 0px!important;
+}
+.quantity_details{
+float:left;
+width:100%;
+
+}
+
+.divider {
+    background: #eeeff8;
+    height: 1px;
+    overflow: hidden;
+    width: 90%;
+    float: left;
+    margin:5%;
+}
+.modal_quantity_left{
+    float: left;
+    width: 50%;
+    text-align: left;
+}
+.modal_quantity_left p{
+margin:0px 0px 5px 0px;
+}
+.button_Yes{
+background:green
+}
+
+
+@media screen and (min-width: 600px) {
+
+.modal_heading{
+    padding: 25px 15px 15px 15px;
+}
+
+.modal_quantity{
+    width: 100%;
+    padding: 0px 15%;
+    background: #fff;
+}
+
+
+}
+
+
+
+
+

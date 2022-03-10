@@ -1,0 +1,75 @@
+<div class="main-content">
+  <div class="row">
+      <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">PAYMENT HISTORY</h4>
+            </div>
+              <div class="card-body">
+                <div class="toolbar">
+                      <!--        Here you can write extra buttons/actions for the toolbar              -->
+                  </div>
+                    <table id="datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                          <thead>
+                              <tr>
+                                <th>{{ dataTable.headerRow[0] }}</th>
+                                <th>{{ dataTable.headerRow[1] }}</th>
+                                <th>{{ dataTable.headerRow[2] }}</th>
+                                <th>{{ dataTable.headerRow[3] }}</th>
+                                <th>{{ dataTable.headerRow[4] }}</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr *ngFor="let row of dataTable.dataRows">
+                                  <td>{{row[0]}}</td>
+                                  <td>{{row[1]}}</td>
+                                  <td>{{row[2]}}</td>
+                                  <td>{{row[3]}}</td>
+                                  <td>{{row[4]}}</td>
+
+                              </tr>
+                          </tbody>
+                      </table>
+              </div>
+              <!-- end content-->
+          </div>
+          <!--  end card  -->
+
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">DOCTOR HISTORY</h4>
+            </div>
+              <div class="card-body">
+                <div class="toolbar">
+                      <!--        Here you can write extra buttons/actions for the toolbar              -->
+                  </div>
+                    <table id="doctorTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                          <thead>
+                              <tr>
+                                <th>{{ doctorTable.headerRow[0] }}</th>
+                                <th>{{ doctorTable.headerRow[1] }}</th>
+                                <th>{{ doctorTable.headerRow[2] }}</th>
+                                <th>{{ doctorTable.headerRow[3] }}</th>
+                                <th>{{ doctorTable.headerRow[4] }}</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr *ngFor="let row of doctorTable.dataRows">
+                                  <td>{{row[0]}}</td>
+                                  <td>{{row[1]}}</td>
+                                  <td>{{row[2]}}</td>
+                                  <td>{{row[3]}}</td>
+                                  <td>{{row[4]}}</td>
+
+                              </tr>
+                          </tbody>
+                      </table>
+              </div>
+              <!-- end content-->
+          </div>
+
+      </div>
+      <!-- end col-md-12 -->
+  </div>
+  <!-- end row -->
+</div>

@@ -1,0 +1,116 @@
+<ion-header [translucent]="false" class="ion-no-border">
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+   <ion-title text-center><img class="logo" src="assets/images/hututoo-logo.png"></ion-title>
+
+
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<div class="inner_contnet">
+<div class="profile_top_bar">
+
+          <div class="avtarimg" ><img *ngIf="selectedAvatar!==''" src="{{selectedAvatar}}" (click)="editAvatar()">
+          <p class="avtar_action_div" >
+          <ion-icon *ngIf="!showAvatars" (click)="editAvatar()" class="avtar_action"  name="pencil-outline"></ion-icon>
+          <ion-icon *ngIf="showAvatars" (click)="editAvatar()" class="avtar_action" name="checkmark-outline"></ion-icon>
+          </p>
+          </div>
+          <div class="avatar_sample" *ngIf="showAvatars">
+          <p>Select Avatar</p>
+          <img *ngFor="let avatar of sampleAvatars" [ngClass]="{'selected' : selectedAvatar === avatar.name}"  (click)="selectAvatar(avatar.name)" src="{{avatar.name}}">
+          <p>OR</p>
+
+<p>
+<input type="file" id="upload" (change)="onFileChange($event)" hidden/>
+<label for="upload">Choose file</label>
+</p>
+
+
+          </div>
+</div>
+
+<form #form="ngForm" (ngSubmit)="register(form)" method="post">
+
+
+
+    <ion-item>
+        <ion-label position="floating">Name</ion-label>
+        <ion-input  name="name" value="{{ user['name']  }}"></ion-input>
+    </ion-item>
+
+
+
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input readonly type="text"  name="email" value="{{ user['email']  }}"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Mobile</ion-label>
+      <ion-input type="text"  name="mobile" value="{{ user['mobile']  }}"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label position="floating">Public ID</ion-label>
+        <ion-input readonly  name="public_id" value="{{ user['public_id']  }}"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label position="floating">Private Key</ion-label>
+        <ion-input  type="password" readonly name="private_key" value="{{ user['private_key']  }}"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label position="floating">Date Of Birth</ion-label>
+        <ion-input  name="dob" value="{{ user['dob']  }}"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label position="floating">City</ion-label>
+        <ion-input  name="city" value="{{ user['city']  }}"></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <ion-label position="floating">State</ion-label>
+        <ion-input  name="state" value="{{ user['state']  }}"></ion-input>
+    </ion-item>
+
+
+
+
+
+
+
+  <div class="onlymargin"></div>
+   <div class="withpadding">
+   <ion-button type="submit" expand="block" color="primary">Update</ion-button>
+   </div>
+  </form>
+
+</div>
+</ion-content>
+
+<ion-footer>
+<ion-row>
+        <ion-col no-padding routerLink="/stream">
+            <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+        </ion-col>
+
+        <ion-col no-padding routerLink="/search">
+            <ion-icon name="search-outline"></ion-icon>
+        </ion-col>
+
+        <ion-col no-padding routerLink="/landing">
+            <ion-icon name="home-outline"></ion-icon>
+        </ion-col>
+
+        <ion-col no-padding routerLink="/activity">
+            <ion-icon name="list-outline"></ion-icon>
+        </ion-col>
+    </ion-row>
+</ion-footer>

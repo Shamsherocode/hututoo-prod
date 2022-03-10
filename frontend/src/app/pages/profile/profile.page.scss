@@ -1,0 +1,78 @@
+.profile_top_bar{
+background:var(--ion-color-secondary);
+text-align:center;
+padding: 5% 0 0% 0;
+float: left;
+width: 100%;
+margin-bottom:20px;
+}
+
+.profile_top_bar .avtar{
+    color: #fff;
+    font-size: 60px;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    padding: 5%;
+}
+.profile_top_bar .avtarimg {
+    width: 100px;
+    margin: 0 auto;
+        min-height: 120px;
+}
+.profile_top_bar .avtarimg img{
+    color: #fff;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+.avtar_action_div{
+margin-top:-35px;
+margin-bottom:0px;
+}
+.avtar_action{
+    background: rgba(0,0,0,0.6);
+    border-radius: 50%;
+    padding: 2px;
+    color: #fff;
+        font-size: 25px;
+}
+
+
+
+form{
+    float: left;
+    width: 100%;
+}
+.avatar_sample{
+float:left;
+width:80%;
+margin:0 10% 15px 10%;
+}
+.avatar_sample p{
+margin: 5px;
+    float: left;
+    width: 100%;
+    color:#fff;
+}
+.avatar_sample img{
+width:45px;
+height:45px;
+margin:5px 10px;
+border:2px solid #47acba;
+border-radius: 50%
+}
+
+.avatar_sample img.selected{
+border:2px solid red;
+}
+
+.avatar_sample label {
+  background-color: indigo;
+  color: white;
+  padding: 0.5rem;
+  font-family: sans-serif;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+

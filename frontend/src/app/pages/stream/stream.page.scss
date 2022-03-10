@@ -1,0 +1,137 @@
+.event_comments{
+float:left;
+width:100%;
+padding: 0px;
+}
+
+.event_comments ion-item{
+padding:0px 0px 15px 0px;
+
+}
+
+.event_comments .event_comment{
+float:left;
+width:100%;
+margin-bottom:15px;
+background:#eeeff8;
+}
+.event_comments .end{
+padding: 15px;
+}
+.event_comments .start{
+padding: 15px;
+}
+.event_comments ion-note{
+--color:#000;
+font-size: 14px;
+padding: 10px 0px;
+width: 100%;
+}
+.event_comments ion-thumbnail{
+--border-radius:50%;
+height:auto;
+}
+.event_comments ion-thumbnail img{
+max-width:45px;
+}
+
+p.with_icon img{
+width:45px;
+border-radius:50%;
+vertical-align: middle;
+
+}
+.end p.with_icon img{
+float:right;
+margin-left: 10px;
+}
+
+.start p.with_icon img{
+float:left;
+margin-right: 10px;
+}
+.event_comments p{
+margin:0px;
+}
+.event_comments span.item_title{
+font-size:14px;
+font-weight: 600;
+}
+.event_comments span.item_description{
+font-size:12px;
+margin:0px 5px;
+}
+.event_comments span.item_time{
+font-size:12px;
+font-weight: 600;
+}
+.event_comments span.item_board{
+font-size:12px;
+font-weight: 600;
+}
+.event_comments .end ion-thumbnail{
+margin:-50px 0px 0px 10px !important;
+}
+.event_comments .start ion-thumbnail{
+margin:-50px 10px 0px 0px !important;
+}
+.divider {
+background: #eeeff8;
+height: 1px;
+overflow: hidden;
+width: 90%;
+float: left;
+margin:5%;
+}
+.action_section{
+padding:15px;
+color:#000;
+font-size:12px;
+float: left;
+width: 100%;
+background: #e2e2e2;
+}
+.action_section p.left{
+float:left;
+color:#000;
+}
+.action_section p.right{
+float:right;
+color:#000;
+}
+.action_section ion-icon{
+font-size:14px;
+vertical-align: middle;
+}
+.comment_submit{
+background:#F6F6F6;
+border:0px;
+background: url("/assets/images/post_comment.jpg");
+background-size: 35px;
+background-repeat: no-repeat;
+background-position: right;
+width: 35px;
+position: absolute;
+height: 35px;
+right: 15px;
+top: 0;
+z-index: 9;
+
+}
+ion-footer{
+padding-left:0px;
+padding-right:0px;
+}
+
+ion-footer form{
+border-bottom: 1px solid #ddd;
+padding-left: 10px;
+padding-right: 10px;
+padding-bottom: 10px;
+padding-top: 0px;
+margin-bottom: 10px;
+}
+ion-footer ion-row{
+padding-left:10px;
+padding-right:10px;
+}

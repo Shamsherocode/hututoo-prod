@@ -1,0 +1,54 @@
+<ion-header [translucent]="false" class="ion-no-border">
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<div class="header-bar">
+<img class="logo" src="assets/images/hututoo-logo.png">
+</div>
+
+
+  <form #form="ngForm" (ngSubmit)="login(form)" method="post">
+
+      <div *ngIf="error" class="message danger">{{message}}</div>
+      <div *ngIf="success" class="message success">{{message}}</div>
+
+      <ion-input *ngIf="loginStep==1"  ngModel type="text" name="email" placeholder="Enter your e-mail"></ion-input>
+
+
+
+  <ion-row *ngIf="loginStep==2"  class="otp-row">
+  <ion-col>
+   <ion-input ngModel #otp1 name="otp1" required maxLength="1" (keyup)="otpController($event,otp2,'')">
+   </ion-input>
+   <ion-input ngModel #otp2 name="otp2" required maxLength="1" (keyup)="otpController($event,otp3,otp1)">
+   </ion-input>
+   <ion-input ngModel #otp3 name="otp3" required maxLength="1" (keyup)="otpController($event,otp4,otp2)">
+   </ion-input>
+   <ion-input ngModel #otp4 name="otp4" required maxLength="1" (keyup)="otpController($event,otp5,otp3)">
+   </ion-input>
+   <ion-input ngModel #otp5 name="otp5" required maxLength="1" (keyup)="otpController($event,otp6,otp4)">
+   </ion-input>
+   <ion-input ngModel  #otp6 name="otp6" required maxLength="1" (keyup)="otpController($event,'',otp5)">
+   </ion-input>
+  </ion-col>
+</ion-row>
+
+<p *ngIf="loginStep==2"  class="text-right"><a (click)="ReSendOTP(form)"> Re-send OTP</a></p>
+
+
+
+
+
+    <div class="login-button">
+        <ion-button type="submit" expand="block" size="large" color="primary">{{buttonName}}</ion-button>
+    </div>
+  </form>
+
+</ion-content>

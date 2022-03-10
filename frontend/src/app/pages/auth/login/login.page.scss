@@ -1,0 +1,59 @@
+.header-bar{
+background:var(--ion-color-secondary);
+text-align:center;
+padding:10% 5%;
+}
+
+.header-bar img.logo{
+max-width:200px;
+}
+
+form{
+width: 400px;
+max-width:80%;
+margin: 30% auto 0% auto;
+}
+ion-input{
+border-bottom:2px solid #ddd;
+}
+.login-button{
+margin-top:10%;
+}
+.message{
+text-align:left;
+font-size:14px;
+line-height:normal;
+padding:5px 0px;
+}
+.message.danger{
+color:red;
+}
+.message.success{
+color:green;
+}
+.otp-row{
+text-align: center;
+}
+.otp-row ion-col{
+padding:0px;
+}
+.otp-row ion-input{
+ display:inline-block;
+ width:12.66%;
+ margin:2%;
+ text-align: center;
+ --padding-end: 0px;
+}
+
+@media screen and (min-width: 600px) {
+  .header-bar{
+text-align:center;
+padding:2%;
+}
+form{
+margin: 15% auto 15% auto;
+}
+
+}
+
+

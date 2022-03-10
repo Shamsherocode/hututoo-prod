@@ -1,0 +1,23 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "hututoo",
+	"webDir": "www",
+	"bundledWebRuntime": false,
+	"plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 5000,
+      "launchAutoHide": true,
+      "backgroundColor": "#3880ff",
+      "androidSplashResourceName": "splash",
+      "androidScaleType": "CENTER_CROP",
+      "showSpinner": true,
+      "androidSpinnerStyle": "large",
+      "iosSpinnerStyle": "small",
+      "spinnerColor": "#ffffff",
+      "splashFullScreen": true,
+      "splashImmersive": true,
+      "layoutName": "launch_screen",
+      "useDialog": false
+    }
+  }
+}
