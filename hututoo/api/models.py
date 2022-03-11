@@ -61,7 +61,7 @@ class UserProfile(models.Model):
     dob = models.DateField(blank=True, null=True)
     avatar = models.ImageField(upload_to='media', blank=True, null=True)
     mobile = models.CharField(max_length=12, blank=True, null=True)
-    public_key = models.CharField(max_length=16,  unique=True, blank=True, null=True)
+    public_key = models.CharField(max_length=12,  unique=True, blank=True, null=True)
     private_key = models.CharField(max_length=16, unique=True, blank=False)
     city = models.CharField(max_length=50, null=True, blank=True)
     state = models.CharField(max_length=50, blank=True, null=True)
