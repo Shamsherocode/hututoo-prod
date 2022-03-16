@@ -126,7 +126,6 @@ class VerifyOTP(APIView):
                         refresh = RefreshToken.for_user(user)
                         return Response({
                                 'success': True,
-                                'refresh': str(refresh),
                                 'access': str(refresh.access_token)
                             })
                 except:
@@ -156,6 +155,45 @@ class UserProfileView(APIView):
             return Response({'success': True, 'payload': profile_serializer.data})
         except:
             return Response({'success': False, 'message': 'Unauthenticted User'})
+
+    # def post(self, request):
+    #     serializer = UserProfile(data = request.data)
+    #     if not serializer.is_valid():
+    #         print(serializer.errors)
+    #         return Response({'success': False, 'payload': serializer.errors, 'message': 'Something went wrong'})
+
+    #     serializer.save()
+    #     return Response({'success': True, 'payload': serializer.data, 'message': 'You have successfully Created Quiz.'})
+
+    def put(self, request, user):
+        try:
+            user_profile = UserProfile.objects.get(user__email=user)
+            serializer = UserProfileSerializer(user_profile, data = request.data)
+            if not serializer.is_valid():
+                print(serializer.errors)
+                return Response({'success': False, 'payload': serializer.errors, 'message': 'Something went wrong'})
+
+            serializer.save()
+            return Response({'success': True, 'payload': serializer.data, 'message': 'You have successfully updated..'})
+
+        except Exception as e:
+            print(e)
+            return Response({'success': False, 'message': 'Invalid ID'})
+
+    def patch(self, request, user):
+        try:
+            user_profile = UserProfile.objects.get(user__email=user)
+            serializer = UserProfileSerializer(user_profile, data = request.data, partial=True)
+            if not serializer.is_valid():
+                print(serializer.errors)
+                return Response({'success': False, 'payload': serializer.errors, 'message': 'Something went wrong'})
+
+            serializer.save()
+            return Response({'success': True, 'payload': serializer.data, 'message': 'You have successfully updated profile.'})
+
+        except Exception as e:
+            print(e)
+            return Response({'success': False, 'message': 'Invalid ID'})
 
 class EventView(APIView):
     # permission_classes = [ReadOnly]
