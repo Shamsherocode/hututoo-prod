@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 import dj_database_url
+from datetime import timedelta
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -30,8 +31,6 @@ DEBUG = os.getenv('DEBUG')
 
 ALLOWED_HOSTS = ['api.psd2htmlx.com', 'www.api.psd2htmlx.com', '159.223.153.96', "*"]
 
-# AUTH_USER_MODEL = 'api.CustomUser' 
-# AUTH_USER_MODEL='api.User'
 
 # Application definition
 
@@ -44,8 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'api',
     "rest_framework",
-    # "rest_framework.authtoken",
-    'corsheaders'
+    'corsheaders',
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
@@ -60,6 +59,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'hututoo.urls'
+
+AUTH_USER_MODEL='api.User'
 
 TEMPLATES = [
     {
@@ -98,23 +99,63 @@ WSGI_APPLICATION = 'hututoo.wsgi.application'
 #     )
 # }
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': False,
+    'UPDATE_LAST_LOGIN': False,
+
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': SECRET_KEY,
+    'VERIFYING_KEY': None,
+    'AUDIENCE': None,
+    'ISSUER': None,
+    'JWK_URL': None,
+    'LEEWAY': 0,
+
+    'AUTH_HEADER_TYPES': ('Bearer',),
+    'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
+    'USER_ID_FIELD': 'id',
+    'USER_ID_CLAIM': 'user_id',
+    'USER_AUTHENTICATION_RULE': 'rest_framework_simplejwt.authentication.default_user_authentication_rule',
+
+    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
+    'TOKEN_TYPE_CLAIM': 'token_type',
+    'TOKEN_USER_CLASS': 'rest_framework_simplejwt.models.TokenUser',
+
+    'JTI_CLAIM': 'jti',
+
+    'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
+    'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
+    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+}
+
+
+
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
     # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'hututoo',
-    #     'USER': 'hututoo',
-    #     'PASSWORD': 'hututoo',
-    #     'HOST': 'postgres',
-    #     'PORT': 5432,
-
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    # }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'hututoo',
+        'PASSWORD': 'postgres',
+        'HOST': 'db',
+        'PORT': 5432,
+}
     # }
     #  "default": dj_database_url.config(
     #     default="postgres://hututoo:hututoo@localhost:5432/hututoo", conn_max_age=600

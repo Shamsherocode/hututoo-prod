@@ -11,27 +11,22 @@ services:
       - .env
     ports:
     - "8000:8000"
-    # depends_on:
-    #   - postgres
-
-  frontend:
-    build:
-      context: ./frontend
-    volumes:
-      - hututoo_build:/hututoo/www
-
-  # postgres:
-  #   image: postgres
-  #   networks:
-  #     - hututoo-backend-tier
-  #   environment:
-  #     - POSTGRES_DB=hututoo
-  #     - POSTGRES_USER=hututoo
-  #     - POSTGRES_PASSWORD=hututoo
-  #   ports:
-  #     - 5432:5432
+    depends_on:
+      - db
+  # frontend:
+  #   build:
+  #     context: ./frontend
   #   volumes:
-  #     - pgdata:/var/lib/postgres
+  #     - hututoo_build:/hututoo/www
+
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_USER=hututoo
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - pgdata:/var/lib/posgresql/data
 
   nginx:
     image: nginx:latest
@@ -43,9 +38,10 @@ services:
       - ./nginx/nginx-setup.conf:/etc/nginx/conf.d/default.conf:ro
       - ./data/certbot/www:/var/www/certbot
       - ./data/certbot/conf/:/etc/letsencrypt
-      - hututoo_build:/var/www/hututoo
+      # - hututoo_build:/var/www/hututoo
       - media:/media
       - static:/static
+      - pgdata:/pgdata
     depends_on:
       - django_gunicorn
 
@@ -58,4 +54,5 @@ services:
 volumes:
   static:
   media:
-  hututoo_build:
+  # hututoo_build:
+  pgdata:

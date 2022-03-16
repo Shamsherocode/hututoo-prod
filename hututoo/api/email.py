@@ -2,7 +2,7 @@ from django.conf import settings
 from django.core.mail import send_mail
 import random
 # from .models import User
-from .models import RegisterUser
+from .models import RegisterUser, User
 
 
 def sendOTP(user):

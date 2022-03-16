@@ -69,9 +69,14 @@ class VerifyUserOTPSerializer(serializers.Serializer):
     otp = serializers.CharField()
 
 
-class RegitserSerializer(serializers.ModelSerializer):
+class RegitsersSerializer(serializers.ModelSerializer):
     class Meta:
         model = RegisterUser
+        fields = ['id', 'email', 'is_verified']
+
+class RegitserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
         fields = ['id', 'email', 'is_verified']
 
 

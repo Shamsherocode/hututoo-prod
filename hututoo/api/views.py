@@ -1,4 +1,3 @@
-from urllib import request
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -11,6 +10,7 @@ from .email import sendOTP
 from functools import partial
 from django.contrib.auth.hashers import make_password
 from django.shortcuts import get_object_or_404
+from rest_framework_simplejwt.tokens import RefreshToken
 
 import json
 import threading
@@ -64,47 +64,37 @@ class LoginUser(APIView):
         try:
             data = request.data
             serializer = LoginSerializer(data)
-            verify_user = RegisterUser.objects.filter(email = data['email'])
+            verify_user = User.objects.filter(email = data['email'])
             if not verify_user:
-                user = RegisterUser(email = data['email'])
+                user = User(email = data['email'])
                 user.save()
             else:
                 user = verify_user[0]
             sendOTP(user)
             return Response({
-            'status': 200,
+            'success': True,
             'message': 'Verification code sent on the mail address. Please check',
             'data': serializer.data,
             })
         except: 
             return Response({
-            'status': 400,
+            'success': False,
             'message': 'Please Type correct Email Address',
             })
-
-class UserProfileView(APIView):
-    # permission_classes = [ReadOnly]
-    def get(self, request, user):
-        try: 
-            user_profile = UserProfile.objects.get(user__email=user)
-            profile_serializer = UserProfileSerializer(user_profile)
-            return Response({'status': 200, 'payload': profile_serializer.data})
-        except:
-            return Response({'status': 400, 'message': 'Unauthenticted User'})
 
 class EventOptionView(APIView):
     # permission_classes = [ReadOnly]
     def get(self, request):
         data = QuizOption.objects.all()
         serializer = QuizOptionSerializer(data, many=True)
-        return Response({'status': 200, 'payload': serializer.data})
+        return Response({'success': True, 'payload': serializer.data})
 
 class EventCategoryView(APIView):
     # permission_classes = [ReadOnly]
     def get(self, request):
         data = QuizCategory.objects.all()
         serializer = QuizCategorySerializer(data, many=True)
-        return Response({'status': 200, 'payload': serializer.data})
+        return Response({'success': False, 'payload': serializer.data})
 
 class VerifyOTP(APIView):
     # permission_classes = (partial(MyPermission, ['GET', 'POST', 'HEAD']),)
@@ -116,61 +106,72 @@ class VerifyOTP(APIView):
                 email = serializer.data['email']
                 otp = serializer.data['otp']
                 try:
-                    user = RegisterUser.objects.get(email=email)
+                    user = User.objects.get(email=email)
                     if user.otp != otp:
                         return Response({
-                            'status': 400,
+                            'success': False,
                             'message': 'Invalid OTP. Please enter corrent OTP',  
                         })
                     else:
                         if not user.is_verified:
                             user.is_verified = True
-
                             user.save()
                             privat_key_gen = make_password(user.email + str(user.id))
-                            # privat_key_gen = hashlib.md5(user.email + str(user.id).encode('utf-8')).hexdigest() 
-                            # key = privat_key_gen.hexdigest()
-                            profile = UserProfile(user = user, private_key = privat_key_gen)
-                            profile.save()
-                            points = Transaction(user = user, user_points=10000, points_method='SignUp Bonus', points_status='Credit')
+                            # profile = UserProfile(user = user, city='Jaipur')
+                            points, created = Transaction.objects.get_or_create(user = user, user_points=10000, points_method='SignUp Bonus', points_status='Credit')
                             points.save()
+                            profile , created = UserProfile.objects.get_or_create(user = user, private_key=privat_key_gen)
+                            profile.save()
+                        user = User.objects.get(email = serializer.data['email'])
+                        refresh = RefreshToken.for_user(user)
                         return Response({
-                                'status': 200,
-                                'message': 'Email Verification is done..',
+                                'success': True,
+                                'refresh': str(refresh),
+                                'access': str(refresh.access_token)
                             })
                 except:
                     return Response({
-                        'status': 400,
+                        'success': False,
                         'message': 'Email not found. Please enter the correct Email Address',
                         
                     })
 
             return Response({
-                        'status': 400,
-                        'payload': serializer.errors,
+                        'success': False,
+                        'payload': 'Something Went Wrong',
                         
                     })
         except:
             return Response({
-                        'status': 400,
+                        'success': False,
                         'message': 'Something Went Wrong',
                     })
+
+class UserProfileView(APIView):
+    # permission_classes = [ReadOnly]
+    def get(self, request, user):
+        try: 
+            user_profile = UserProfile.objects.get(user__email=user)
+            profile_serializer = UserProfileSerializer(user_profile)
+            return Response({'success': True, 'payload': profile_serializer.data})
+        except:
+            return Response({'success': False, 'message': 'Unauthenticted User'})
 
 class EventView(APIView):
     # permission_classes = [ReadOnly]
     def get(self, request):
         quizs = Quizs.objects.all()
         serializer = QuizSerializer(quizs, many=True)
-        return Response({'status': 200, 'payload': serializer.data})
+        return Response({'success': True, 'payload': serializer.data})
 
     def post(self, request):
         serializer = QuizSerializer(data = request.data)
         if not serializer.is_valid():
             print(serializer.errors)
-            return Response({'status': 403, 'payload': serializer.errors, 'message': 'Something went wrong'})
+            return Response({'success': False, 'payload': serializer.errors, 'message': 'Something went wrong'})
 
         serializer.save()
-        return Response({'status': 200, 'payload': serializer.data, 'message': 'You have successfully Created Quiz.'})
+        return Response({'success': True, 'payload': serializer.data, 'message': 'You have successfully Created Quiz.'})
 
 
     def put(self, request):
@@ -179,14 +180,14 @@ class EventView(APIView):
             serializer = QuizSerializer(quizs, data = request.data)
             if not serializer.is_valid():
                 print(serializer.errors)
-                return Response({'status': 403, 'payload': serializer.errors, 'message': 'Something went wrong'})
+                return Response({'success': False, 'payload': serializer.errors, 'message': 'Something went wrong'})
 
             serializer.save()
-            return Response({'status': 200, 'payload': serializer.data, 'message': 'You have successfully Created Quiz.'})
+            return Response({'success': True, 'payload': serializer.data, 'message': 'You have successfully Created Quiz.'})
 
         except Exception as e:
             print(e)
-            return Response({'status': 403, 'message': 'Invalid ID'})
+            return Response({'success': False, 'message': 'Invalid ID'})
 
     def patch(self, request):
         try:
@@ -194,14 +195,14 @@ class EventView(APIView):
             serializer = QuizSerializer(quizs, data = request.data, partial=True)
             if not serializer.is_valid():
                 print(serializer.errors)
-                return Response({'status': 403, 'payload': serializer.errors, 'message': 'Something went wrong'})
+                return Response({'success': False, 'payload': serializer.errors, 'message': 'Something went wrong'})
 
             serializer.save()
-            return Response({'status': 200, 'payload': serializer.data, 'message': 'You have successfully Created Quiz.'})
+            return Response({'success': True, 'payload': serializer.data, 'message': 'You have successfully Created Quiz.'})
 
         except Exception as e:
             print(e)
-            return Response({'status': 403, 'message': 'Invalid ID'})
+            return Response({'success': False, 'message': 'Invalid ID'})
 
 
     def delete(self, request):
@@ -209,11 +210,11 @@ class EventView(APIView):
             id = request.GET.get('id')
             quizs = Quizs.objects.get(id=id)
             quizs.delete()
-            return Response({'status': 200, 'message': 'Quiz Successfully deleted'})
+            return Response({'success': True, 'message': 'Quiz Successfully deleted'})
         
         except Exception as e:
             print(e)
-            return Response({'status': 403, 'message': 'Invalid ID'})
+            return Response({'success': False, 'message': 'Invalid ID'})
 
 class TransactionView(APIView):
     def get(self, request, user):
@@ -224,13 +225,12 @@ class TransactionView(APIView):
             for i in serializer.data:
                 if i['points_status'] == 'Credit':
                     total = total+i['user_points']
-                    print(total, 'sssssssssss')
                 else:
                     total = total - i['user_points']
 
-            return Response({'status': 200, 'payload': serializer.data, 'total_points': total})
+            return Response({'success': True, 'payload': serializer.data, 'total_points': total})
         except:
-            return Response({'status': 400, 'message': 'Unauthenticted User'})
+            return Response({'success': False, 'message': 'Unauthenticted User'})
 
 
 def view_404(request, exception=None):
@@ -239,11 +239,8 @@ def view_404(request, exception=None):
 
 class PredictView(APIView):
     def post(self, request, **kwargs):
-        print(kwargs)
         user = get_object_or_404(RegisterUser, email=kwargs['user'])# RegisterUser.object.get(email = user)
-        print(user, 'ssssssss')
         event = get_object_or_404(Quizs, id=kwargs['event_id'])
-        print(event, 'eve')
         # try:
         # Create  Validator for points 
         trans = Transaction(

@@ -4,6 +4,7 @@ FROM python:3.9-slim
 
 ENV PYTHONUNBUFFERED 1
 RUN pip install --upgrade pip
+RUN apt-get update && apt-get install -y postgresql-client
 # COPY ./requirements.txt .
 # RUN pip install --upgrade pip
 # RUN apt-get update \
