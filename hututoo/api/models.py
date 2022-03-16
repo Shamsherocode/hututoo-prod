@@ -92,14 +92,14 @@ class UserProfile(models.Model):
     avatar = models.ImageField(upload_to='media', blank=True, null=True)
     mobile = models.CharField(max_length=12, blank=True, null=True)
     public_key = models.CharField(max_length=12,  unique=True, blank=True, null=True)
-    private_key = models.CharField(max_length=255, unique=False, blank=True)
+    private_key = models.CharField(max_length=255, unique=True, blank=True)
     city = models.CharField(max_length=50, null=True, blank=True)
     state = models.CharField(max_length=50, blank=True, null=True)
 
 
-    def save(self, *args, **kwargs):
-        self.public_key = random_with_N_digits(12)
-        super(UserProfile, self).save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     self.public_key = random_with_N_digits(12)
+    #     super(UserProfile, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.public_key

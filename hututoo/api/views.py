@@ -16,6 +16,16 @@ import json
 import threading
 import hashlib
 
+
+def random_with_N_digits(n):
+    range_start = 10**(n-1)
+    range_end = (10**n)-1
+    return randint(range_start, range_end)
+
+# def save(self, *args, **kwargs):
+#         self.public_key = random_with_N_digits(12)
+#         super(UserProfile, self).save(*args, **kwargs)
+
 class EmailThread(threading.Thread):
     def __init__(self, sendOTP):
         self.sendOTP = sendOTP
@@ -23,6 +33,7 @@ class EmailThread(threading.Thread):
 
     def run(self):
         self.sendOTP()
+
        
 class ReadOnly(BasePermission):
     def has_permission(self, request, view):
@@ -120,7 +131,7 @@ class VerifyOTP(APIView):
                             # profile = UserProfile(user = user, city='Jaipur')
                             points, created = Transaction.objects.get_or_create(user = user, user_points=10000, points_method='SignUp Bonus', points_status='Credit')
                             points.save()
-                            profile , created = UserProfile.objects.get_or_create(user = user, private_key=privat_key_gen)
+                            profile , created = UserProfile.objects.get_or_create(user = user, private_key=privat_key_gen, public_key=random_with_N_digits(12))
                             profile.save()
                         user_profile = UserProfile.objects.get(user__email=user)
                         profile_serializer = UserProfileViewSerializer(user_profile)
