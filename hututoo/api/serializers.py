@@ -1,3 +1,4 @@
+from dataclasses import field
 from rest_framework import serializers
 from .models import *
 # from django.contrib.auth.models import User
@@ -115,3 +116,8 @@ class TransactionSerializer(serializers.ModelSerializer):
         rep['user'] = RegitserSerializerTransaction(instance.user).data
         rep['event'] = QuizSerializerTransaction(instance.event).data
         return rep
+
+class UserProfileViewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserProfile
+        fields = ['name', 'public_key', 'avatar']

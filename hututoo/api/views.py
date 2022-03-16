@@ -122,11 +122,14 @@ class VerifyOTP(APIView):
                             points.save()
                             profile , created = UserProfile.objects.get_or_create(user = user, private_key=privat_key_gen)
                             profile.save()
+                        user_profile = UserProfile.objects.get(user__email=user)
+                        profile_serializer = UserProfileViewSerializer(user_profile)
                         user = User.objects.get(email = serializer.data['email'])
                         refresh = RefreshToken.for_user(user)
                         return Response({
                                 'success': True,
-                                'access': str(refresh.access_token)
+                                'access': str(refresh.access_token),
+                                'data': profile_serializer.data
                             })
                 except:
                     return Response({
