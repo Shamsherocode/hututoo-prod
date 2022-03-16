@@ -16,6 +16,8 @@ services:
   frontend:
     build:
       context: ./frontend
+    networks:
+      - hututoo-frontend-tier
     volumes:
       - hututoo_build:/hututoo/www
 
