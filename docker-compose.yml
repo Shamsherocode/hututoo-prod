@@ -17,7 +17,7 @@ services:
     build:
       context: ./frontend
     networks:
-      - hututoo-frontend-tier
+      - frontend
     volumes:
       - hututoo_build:/hututoo/www
 
@@ -58,3 +58,6 @@ volumes:
   media:
   hututoo_build:
   pgdata:
+
+networks:
+  frontend:
