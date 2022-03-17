@@ -161,7 +161,7 @@ class VerifyOTP(APIView):
                     })
 
 class UserProfileView(APIView):
-    # permission_classes = [ReadOnly]
+    permission_classes = [IsAuthenticated]
     def get(self, request, user):
         try: 
             user_profile = UserProfile.objects.get(user__email=user)
@@ -269,6 +269,7 @@ class EventView(APIView):
             return Response({'success': False, 'message': 'Invalid ID'})
 
 class TransactionView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request, user):
         try: 
             transaction = Transaction.objects.filter(user__email=user)
