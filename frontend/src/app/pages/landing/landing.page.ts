@@ -171,8 +171,11 @@ this.menu.enable(true);
   }
 
   ngOnInit() {
-
+  
   }
+  
+  
+  
 
   async presentLoginConfirm() {
     const alert = await this.alertController.create({

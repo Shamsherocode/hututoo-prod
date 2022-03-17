@@ -6,6 +6,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { LandingPage } from './landing.page';
+import { HeaderComponent } from '../../header/header.component';
+import { FooterMenuComponent } from '../../footer-menu/footer-menu.component';
 
 const routes: Routes = [
   {
@@ -21,6 +23,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [LandingPage]
+  declarations: [LandingPage,HeaderComponent,FooterMenuComponent]
 })
 export class LandingPageModule {}

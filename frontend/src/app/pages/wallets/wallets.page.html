@@ -1,12 +1,5 @@
 <ion-header [translucent]="false" class="ion-no-border">
-  <ion-toolbar color="secondary">
-    <ion-buttons slot="end">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-   <ion-title text-center><img class="logo" src="assets/images/hututoo-logo.png"></ion-title>
-
-
-  </ion-toolbar>
+  <app-header></app-header>
 </ion-header>
 
 <ion-content>
@@ -42,23 +35,7 @@
 </ion-content>
 
 <ion-footer>
-<ion-row>
-        <ion-col no-padding routerLink="/stream">
-            <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
-        </ion-col>
-
-        <ion-col no-padding routerLink="/search">
-            <ion-icon name="search-outline"></ion-icon>
-        </ion-col>
-
-        <ion-col no-padding routerLink="/landing">
-            <ion-icon name="home-outline"></ion-icon>
-        </ion-col>
-
-        <ion-col no-padding routerLink="/activity">
-            <ion-icon name="list-outline"></ion-icon>
-        </ion-col>
-    </ion-row>
+<app-footer-menu></app-footer-menu>
 
 
 

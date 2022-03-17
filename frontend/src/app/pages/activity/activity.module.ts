@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { ActivityPageRoutingModule } from './activity-routing.module';
 
 import { ActivityPage } from './activity.page';
+import { HeaderComponent } from '../../header/header.component';
+import { FooterMenuComponent } from '../../footer-menu/footer-menu.component';
 
 @NgModule({
   imports: [
@@ -15,6 +17,6 @@ import { ActivityPage } from './activity.page';
     IonicModule,
     ActivityPageRoutingModule
   ],
-  declarations: [ActivityPage]
+  declarations: [ActivityPage,HeaderComponent,FooterMenuComponent]
 })
 export class ActivityPageModule {}

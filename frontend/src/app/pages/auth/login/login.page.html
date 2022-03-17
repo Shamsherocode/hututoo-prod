@@ -1,18 +1,9 @@
 <ion-header [translucent]="false" class="ion-no-border">
-  <ion-toolbar color="secondary">
-    <ion-buttons slot="end">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-
-
-  </ion-toolbar>
+  <app-header></app-header>
 </ion-header>
 
 <ion-content>
-<div class="header-bar">
-<img class="logo" src="assets/images/hututoo-logo.png">
-</div>
-
+<div class="inner_contnet">
 
   <form #form="ngForm" (ngSubmit)="login(form)" method="post">
 
@@ -51,4 +42,5 @@
     </div>
   </form>
 
+</div>
 </ion-content>

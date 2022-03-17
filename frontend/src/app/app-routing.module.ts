@@ -24,7 +24,7 @@ const routes: Routes = [
   {
     path: 'event',
     loadChildren: () => import('./pages/event/event.module').then( m => m.EventPageModule),
-    //canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'profile',
@@ -52,15 +52,21 @@ const routes: Routes = [
   {
     path: 'stream',
     loadChildren: () => import('./pages/stream/stream.module').then( m => m.StreamPageModule),
-    //canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'wallets',
-    loadChildren: () => import('./pages/wallets/wallets.module').then( m => m.WalletsPageModule)
+    loadChildren: () => import('./pages/wallets/wallets.module').then( m => m.WalletsPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'transactions',
-    loadChildren: () => import('./pages/transactions/transactions.module').then( m => m.TransactionsPageModule)
+    loadChildren: () => import('./pages/transactions/transactions.module').then( m => m.TransactionsPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'categories',
+    loadChildren: () => import('./pages/categories/categories.module').then( m => m.CategoriesPageModule)
   }
 ];
 

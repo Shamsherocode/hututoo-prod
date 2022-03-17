@@ -4,62 +4,39 @@ width:100%;
 padding: 0px;
 }
 
-.event_comments ion-item{
-padding:0px 0px 15px 0px;
 
-}
-
-.event_comments .event_comment{
+.event_comments .comment_item{
 float:left;
 width:100%;
 margin-bottom:15px;
 background:#eeeff8;
 }
-.event_comments .end{
-padding: 15px;
-}
-.event_comments .start{
-padding: 15px;
-}
-.event_comments ion-note{
---color:#000;
-font-size: 14px;
-padding: 10px 0px;
-width: 100%;
-}
-.event_comments ion-thumbnail{
---border-radius:50%;
-height:auto;
-}
-.event_comments ion-thumbnail img{
-max-width:45px;
+.event_comments .comment_item_start{
+padding: 10px 15px;
+display: grid;
+grid-template-columns: 45px auto;
 }
 
-p.with_icon img{
-width:45px;
-border-radius:50%;
-vertical-align: middle;
-
-}
-.end p.with_icon img{
-float:right;
-margin-left: 10px;
-}
-
-.start p.with_icon img{
+.event_comments .comment_item_start img{
+width:85%;
 float:left;
-margin-right: 10px;
+margin: 5px 5px 0px 0px;
 }
-.event_comments p{
+
+
+.event_comments .comment_item_start p{
 margin:0px;
 }
+.event_comments span{
+float:left;
+width:100%;
+}
 .event_comments span.item_title{
-font-size:14px;
+font-size:12px;
 font-weight: 600;
 }
 .event_comments span.item_description{
 font-size:12px;
-margin:0px 5px;
 }
 .event_comments span.item_time{
 font-size:12px;
@@ -69,12 +46,7 @@ font-weight: 600;
 font-size:12px;
 font-weight: 600;
 }
-.event_comments .end ion-thumbnail{
-margin:-50px 0px 0px 10px !important;
-}
-.event_comments .start ion-thumbnail{
-margin:-50px 10px 0px 0px !important;
-}
+
 .divider {
 background: #eeeff8;
 height: 1px;
@@ -84,7 +56,7 @@ float: left;
 margin:5%;
 }
 .action_section{
-padding:15px;
+padding:0px 15px;
 color:#000;
 font-size:12px;
 float: left;

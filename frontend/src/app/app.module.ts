@@ -10,8 +10,12 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { HttpClientModule }    from '@angular/common/http';
+import { MenutopComponent } from './menutop/menutop.component';
+
+//import { HeaderComponent } from './header/header.component';
+
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent,MenutopComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(),IonicStorageModule.forRoot(), AppRoutingModule, HttpClientModule,ServiceWorkerModule.register('ngsw-worker.js', {
   enabled: environment.production,

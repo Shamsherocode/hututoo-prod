@@ -4,6 +4,8 @@ import { tap } from 'rxjs/operators';
 import { Storage } from '@ionic/storage-angular';
 import { EnvService } from './env.service';
 import { User } from '../models/user';
+import jwt_decode from 'jwt-decode';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +14,7 @@ import { User } from '../models/user';
 export class AuthService {
   isLoggedIn:any;
   token:any;
+  userName:'';
   private _storage: Storage | null = null;
 
   constructor(
@@ -30,106 +33,84 @@ export class AuthService {
   }
 
 
-  login(email: String, password: String) {
+  validateEmail(email: String) {
+  
+      let httpOptions = {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+      };
 
-       let tokenData=[];
-        tokenData["token_type"]='Barier';
-        tokenData["access_token"]='access_tokenaccess_tokenaccess_tokenaccess_tokenaccess_token';
-        this._storage?.set('token', tokenData);
-
-        this.token = tokenData;
-        this.isLoggedIn = true;
-        return tokenData;
-     /*
-    return this.http.post(this.env.API_URL + 'auth/login',
-      {email: email, password: password}
-    ).pipe(
-      tap(token => {
-      console.log(token)
-        this._storage?.set('token', token);
-
-        this.token = token;
-        this.isLoggedIn = true;
-        return token;
-      }),
-    );
-    */
-
-  }
-
-  register(fName: String, lName: String, email: String, password: String) {
-    return this.http.post(this.env.API_URL + 'auth/register',
-      {fName: fName, lName: lName, email: email, password: password}
-    )
-  }
-
-  logout() {
-
-        this._storage?.remove("token");
-        this.isLoggedIn = false;
-        delete this.token;
-        return '';
-        /*
-    const headers = new HttpHeaders({
-      'Authorization': this.token["token_type"]+" "+this.token["access_token"]
-    });
-
-    return this.http.get(this.env.API_URL + 'auth/logout', { headers: headers })
-    .pipe(
+     return this.http.post(this.env.API_URL + 'login/',{email: email},httpOptions).pipe(
       tap(data => {
-        this._storage.remove("token");
-        this.isLoggedIn = false;
-        delete this.token;
         return data;
       })
     )
-    */
+    
+  }
+  
+  validateOtp(email: String, otp: String) {
+  let httpOptions = {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+   };
+
+    return this.http.post(this.env.API_URL + 'verify-otp/',{email: email,otp: otp},httpOptions).pipe(
+      tap(data => {
+      if(data['success']){
+        this._storage.set('USER_TOKEN', data['access'])
+      }
+        return data;
+      })
+    )
+  }
+  
+  
+  getUserProfile(){
+    console.log('getUserProfile')
+    let httpOptions = {
+        headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    
+    return this.http.get(this.env.API_URL + 'user-profile/ramanbhasker@ocodewire.com/', httpOptions).pipe(
+     tap(user => { 
+     this._storage.set('USER_PROFILE',user)
+     return user;
+     })
+    )
+  }
+  
+  
+  logout() {
+
+        this._storage?.remove("USER_TOKEN");
+        this.isLoggedIn = false;
+        this.userName='';
+        delete this.token;
+        return '';
+        
   }
 
   user() {
 
-  let user={
-    id: 11,
-    name: 'bhasker80',
-    mobile: '9988664020',
-    email: 'ramanb@browsewire.net',
-    public_id: 'abc123abc123',
-    dob:'16-01-1980',
-    city: 'Mohlai',
-    state: 'Punjab',
-    private_key: 'abc123abc123cyb17',
-    avatar: 'assets/images/avatar-3.jpg',
-   };
-
-  return user;
-  /*
-    const headers = new HttpHeaders({
-      'Authorization': this.token["token_type"]+" "+this.token["access_token"]
-    });
-
-    return this.http.get<User>(this.env.API_URL + 'auth/user', { headers: headers })
-    .pipe(
-      tap(user => {
-        return user;
-      })
-    )
-    */
+  return this._storage.get('USER_PROFILE')
+    
   }
 
   getToken() {
-    return this._storage?.get('token').then(
+    return this._storage?.get('USER_TOKEN').then(
       data => {
-       this.token = data;
-
-        if(this.token != null) {
-          this.isLoggedIn=true;
+         this.token = data;
+         if(this.token != null) {
+         var jwt_decodeed = jwt_decode(data)
+         this.userName = jwt_decodeed['user_id']
+         this.isLoggedIn=true;
         } else {
           this.isLoggedIn=false;
+          this.userName = ''
         }
       },
       error => {
         this.token = null;
         this.isLoggedIn=false;
+        this.userName = ''
       }
     );
   }

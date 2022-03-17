@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { TransactionsPageRoutingModule } from './transactions-routing.module';
+import { HeaderComponent } from '../../header/header.component';
+import { FooterMenuComponent } from '../../footer-menu/footer-menu.component';
 
 import { TransactionsPage } from './transactions.page';
 
@@ -15,6 +17,6 @@ import { TransactionsPage } from './transactions.page';
     IonicModule,
     TransactionsPageRoutingModule
   ],
-  declarations: [TransactionsPage]
+  declarations: [TransactionsPage,HeaderComponent,FooterMenuComponent]
 })
 export class TransactionsPageModule {}

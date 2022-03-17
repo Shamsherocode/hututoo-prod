@@ -1,12 +1,5 @@
 <ion-header [translucent]="false" class="ion-no-border">
-  <ion-toolbar color="secondary">
-    <ion-buttons slot="end">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-   <ion-title text-center><img class="logo" src="assets/images/hututoo-logo.png"></ion-title>
-
-
-  </ion-toolbar>
+ <app-header></app-header>
 </ion-header>
 
 <ion-content>
@@ -21,13 +14,10 @@
 <div class="list-items">
     <div class="list-item" *ngFor="let data of allActivites" (click)="showDetail(data)">
       <p>
-      <span class="item_title">{{data.title}}</span>
-      <span class="item_description">{{data.description}}</span>
+      <span class="item_title">{{data.title}} <a>@{{data.event}}</a> {{data.time}}</span>
       </p>
-      <p>
-      <span class="item_time">{{data.time}}</span>
-      <span class="item_board"> - on <a>{{data.event}}</a></span>
-      </p>
+      <p><span class="item_description">{{data.description}} </span></p>
+      
     </div>
 </div>
 
@@ -36,24 +26,5 @@
 </ion-content>
 
 <ion-footer>
-<ion-row>
-        <ion-col no-padding routerLink="/stream">
-            <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
-        </ion-col>
-
-        <ion-col no-padding routerLink="/search">
-            <ion-icon name="search-outline"></ion-icon>
-        </ion-col>
-
-        <ion-col no-padding routerLink="/landing">
-            <ion-icon name="home-outline"></ion-icon>
-        </ion-col>
-
-        <ion-col no-padding routerLink="/activity">
-            <ion-icon color="favorite" name="list-outline"></ion-icon>
-        </ion-col>
-    </ion-row>
-
-
-
+<app-footer-menu></app-footer-menu>
 </ion-footer>

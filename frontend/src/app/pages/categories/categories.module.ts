@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { EventPageRoutingModule } from './event-routing.module';
+import { CategoriesPageRoutingModule } from './categories-routing.module';
 
-import { EventPage } from './event.page';
+import { CategoriesPage } from './categories.page';
 import { HeaderComponent } from '../../header/header.component';
 import { FooterMenuComponent } from '../../footer-menu/footer-menu.component';
 
@@ -15,8 +15,8 @@ import { FooterMenuComponent } from '../../footer-menu/footer-menu.component';
     CommonModule,
     FormsModule,
     IonicModule,
-    EventPageRoutingModule
+    CategoriesPageRoutingModule
   ],
-  declarations: [EventPage,HeaderComponent,FooterMenuComponent]
+  declarations: [CategoriesPage,HeaderComponent,FooterMenuComponent]
 })
-export class EventPageModule {}
+export class CategoriesPageModule {}

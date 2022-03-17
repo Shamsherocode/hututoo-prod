@@ -1,12 +1,5 @@
 <ion-header [translucent]="false" class="ion-no-border">
-  <ion-toolbar color="secondary">
-    <ion-buttons slot="end">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-   <ion-title text-center><img class="logo" src="assets/images/hututoo-logo.png"></ion-title>
-
-
-  </ion-toolbar>
+  <app-header></app-header>
 </ion-header>
 
 <ion-content>
@@ -19,9 +12,9 @@
 <ion-searchbar animated></ion-searchbar>
 <div class="cat_list">
 <ion-slides pager="false" [options]="slideOpts">
-<ion-slide  *ngFor="let cat of allCategory; let i = index">
+<ion-slide routerLink="/category"  *ngFor="let cat of allCategory; let i = index">
   <div class="ion-slide-content">
-          <div class="inner_contnet_slide" style="background:{{getRandomColor()}}">
+          <div class="inner_contnet_slide" style="background:{{cat.background}}">
           <img src="assets/images/business-event-banner.jpg">
           </div>
           <p>{{cat.name}}</p>
@@ -56,23 +49,8 @@
 </ion-content>
 
 <ion-footer>
-<ion-row>
-        <ion-col no-padding routerLink="/stream">
-            <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
-        </ion-col>
+<app-footer-menu></app-footer-menu>
 
-        <ion-col no-padding routerLink="/search">
-            <ion-icon color="favorite" name="search-outline"></ion-icon>
-        </ion-col>
-
-        <ion-col no-padding routerLink="/landing">
-            <ion-icon name="home-outline"></ion-icon>
-        </ion-col>
-
-        <ion-col no-padding routerLink="/activity">
-            <ion-icon name="list-outline"></ion-icon>
-        </ion-col>
-    </ion-row>
 
 
 

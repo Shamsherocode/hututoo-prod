@@ -11,10 +11,10 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-  user: User;
   public showAvatars=false;
   public selectedAvatar='assets/images/avatar-1.jpg';
   public sampleAvatars:any=[];
+  public user=[];
   constructor(
     private modalController: ModalController,
     private menu: MenuController,
@@ -22,7 +22,7 @@ export class ProfilePage implements OnInit {
     private navCtrl: NavController,
     private router: Router,
   ) {
-      this.user = this.authService.user();
+      
       this.sampleAvatars=[{
       'id':1,
       'name':'assets/images/avatar-1.jpg'
@@ -69,6 +69,7 @@ export class ProfilePage implements OnInit {
   ionViewWillEnter() {
     this.authService.getToken().then(() => {
       if(this.authService.isLoggedIn) {
+        this.getUserProfile()
       }else{
         this.router.navigate(['/login'])
       }
@@ -76,7 +77,23 @@ export class ProfilePage implements OnInit {
   }
 
   ngOnInit() {
-
+    this.getUserProfile()
+  }
+  
+  getUserProfile(){
+  
+  this.authService.getUserProfile().subscribe(
+      data => {
+      this.user = data['payload'];
+      this.user['email'] = this.user['user']['email']
+      console.log(this.user)
+      },
+      error => {
+      }
+      
+    );
+  
+  
   }
 
  async onFileChange(event){

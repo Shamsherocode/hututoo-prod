@@ -40,7 +40,7 @@ font-weight: 600;
 }
 span.item_description{
 font-size:12px;
-margin:0px 5px;
+margin:2px 0px;
 }
 span.item_time{
 font-size:12px;
@@ -56,15 +56,6 @@ font-weight: 600;
 @media screen and (min-width: 600px) {
 
 
-.list-items{
-    .list-item{
-      width:31.33%;
-      float:left;
-      margin-right:2%;
-    }
-
-
-  }
 
 }
 

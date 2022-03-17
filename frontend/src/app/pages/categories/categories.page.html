@@ -1,0 +1,32 @@
+<ion-header [translucent]="false" class="ion-no-border">
+  <app-header></app-header>
+</ion-header>
+
+<ion-content>
+
+<div class="inner_contnet">
+
+<div class="cat_section">
+      <p class="cat_title_full">All Categories</p>
+</div>
+
+
+<div class="cat_list">
+  <div class="cat_list_item" routerLink="/category" *ngFor="let cat of allCategory; let i = index">
+          <div class="inner_contnet_slide" style="background:{{cat.background}}">
+          	<img src="assets/images/business-event-banner.jpg">
+          </div>
+          <p>{{cat.name}}</p>
+  </div>
+</div>
+
+
+
+
+</div>
+
+</ion-content>
+
+<ion-footer>
+<app-footer-menu></app-footer-menu>
+</ion-footer>

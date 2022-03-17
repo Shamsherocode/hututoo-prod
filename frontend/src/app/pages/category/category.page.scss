@@ -94,10 +94,17 @@ vertical-align: middle;
 
 @media screen and (min-width: 600px) {
 
+.list-items{
+  float: left;
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-column-gap: 15px;
+}
 
 .list-items{
     .list-item{
-      width:31.33%;
+      width:100%;
       float:left;
       margin-right:2%;
     }

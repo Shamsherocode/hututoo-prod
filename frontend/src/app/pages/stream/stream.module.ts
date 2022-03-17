@@ -5,7 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { StreamPageRoutingModule } from './stream-routing.module';
-
+import { HeaderComponent } from '../../header/header.component';
+import { FooterMenuComponent } from '../../footer-menu/footer-menu.component';
 import { StreamPage } from './stream.page';
 
 @NgModule({
@@ -15,6 +16,6 @@ import { StreamPage } from './stream.page';
     IonicModule,
     StreamPageRoutingModule
   ],
-  declarations: [StreamPage]
+  declarations: [StreamPage,HeaderComponent,FooterMenuComponent]
 })
 export class StreamPageModule {}

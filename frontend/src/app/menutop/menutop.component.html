@@ -1,0 +1,37 @@
+<div class="menu_top_bar">
+<img *ngIf="userAvtar!=''" class="avtarlogo" src="{{userAvtar}}">
+<img *ngIf="userAvtar==''" class="avtarlogo" src="{{userDefaultAvatar}}">
+
+<p *ngIf="userName!=''">{{userName}}</p>
+<p *ngIf="userName==''">...</p>
+</div>
+
+
+<ion-list id="inbox-list" class="menu_box">
+          <ion-menu-toggle  auto-hide="false" *ngFor="let p of appPages; let i = index">
+            
+            <ion-item class="{{ p.title }}" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false">
+              <ion-icon slot="start" [ios]="p.icon + ''" [md]="p.icon + ''"></ion-icon>
+              <ion-label>{{ p.title }}</ion-label>
+            </ion-item>
+            
+            
+          </ion-menu-toggle>
+          <ion-menu-toggle auto-hide="false">
+            <ion-item *ngIf="isLoggedIn" (click)="logout()" lines="none" detail="false">
+            <ion-icon slot="start" name="log-out"></ion-icon>
+            <ion-label>
+              Logout
+            </ion-label>
+          </ion-item>
+
+          <ion-item *ngIf="!isLoggedIn"  (click)="login()" lines="none" detail="false">
+            <ion-icon slot="start" name="log-in"></ion-icon>
+            <ion-label>
+              Login
+            </ion-label>
+          </ion-item>
+
+
+          </ion-menu-toggle>
+</ion-list>

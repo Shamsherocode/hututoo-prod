@@ -1,12 +1,5 @@
 <ion-header [translucent]="false" class="ion-no-border">
-  <ion-toolbar color="secondary">
-    <ion-buttons slot="end">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-   <ion-title text-center><img class="logo" src="assets/images/hututoo-logo.png"></ion-title>
-
-
-  </ion-toolbar>
+  <app-header></app-header>
 </ion-header>
 
 <ion-content>
@@ -21,24 +14,20 @@
 
 <div class="event_comments">
 
-        <div class="event_comment"  *ngFor="let data of allComments" >
-        <div class="{{data.slot}}" (click)="showOptions(data)">
-            <p class="with_icon"  >
+        <div class="comment_item"  *ngFor="let data of allComments" >
+         
+         <div class="comment_item_start" (click)="showOptions(data)">
             <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-            <span class="item_title">{{data.author}}</span>
+            <p>
+            <span class="item_title">{{data.author}} @{{data.slug}} {{data.time}}</span>
             <span class="item_description">{{data.comment}}</span>
-            </p>
-
-            <p >
-            <span class="item_time">{{data.time}}</span>
-            <span class="item_board"> - on {{data.event}}</span>
             </p>
          </div>
 
 
-            <div class="action_section" *ngIf="data.showOption">
-            <p class="left"  (click)="addLike(data)">{{data.like}} <ion-icon name="star-outline"></ion-icon></p>
-            <p class="right" (click)="showCommentTextBox(data)">{{data.comment_count}} <ion-icon name="chatbox-ellipses-outline"></ion-icon> Comments</p>
+            <div class="action_section">
+              <p class="left"  (click)="addLike(data)">{{data.like}} <ion-icon name="star-outline"></ion-icon></p>
+              <p class="right" (click)="showCommentTextBox(data)">{{data.comment_count}} <ion-icon name="chatbox-ellipses-outline"></ion-icon> Comments</p>
             </div>
           </div>
 
@@ -55,23 +44,8 @@
 <p class="comment_submit" (click)="onSubmitComment(form)"></p>
 </form>
 
-<ion-row>
-        <ion-col no-padding routerLink="/stream">
-            <ion-icon color="favorite" name="chatbubble-ellipses-outline"></ion-icon>
-        </ion-col>
+<app-footer-menu></app-footer-menu>
 
-        <ion-col no-padding routerLink="/search">
-            <ion-icon name="search-outline"></ion-icon>
-        </ion-col>
-
-        <ion-col no-padding routerLink="/landing">
-            <ion-icon name="home-outline"></ion-icon>
-        </ion-col>
-
-        <ion-col no-padding routerLink="/activity">
-            <ion-icon name="list-outline"></ion-icon>
-        </ion-col>
-    </ion-row>
 
 
 

@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { RewardsPageRoutingModule } from './rewards-routing.module';
 
 import { RewardsPage } from './rewards.page';
+import { HeaderComponent } from '../../header/header.component';
+import { FooterMenuComponent } from '../../footer-menu/footer-menu.component';
 
 @NgModule({
   imports: [
@@ -15,6 +17,6 @@ import { RewardsPage } from './rewards.page';
     IonicModule,
     RewardsPageRoutingModule
   ],
-  declarations: [RewardsPage]
+  declarations: [RewardsPage,HeaderComponent,FooterMenuComponent]
 })
 export class RewardsPageModule {}

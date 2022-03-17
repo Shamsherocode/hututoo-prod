@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class EnvService {
-  API_URL = '';
+  API_URL = 'https://hututoo.com/api/';
   
   constructor() { }
 }

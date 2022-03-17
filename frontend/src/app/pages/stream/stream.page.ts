@@ -24,7 +24,7 @@ public showCommentBox=false;
 this.allComments = [{
       "id": 1,
       "author": "Leanne Graham",
-      "slot":"end",
+      "slug":"end",
       "thumbnail": "https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y",
       "comment": "Mukesh Ambani net worth to be at $87.4 B or more at 5 PM on 28 Feb?",
       'time':'Mar 7 at 10:26 PM ',
@@ -36,7 +36,7 @@ this.allComments = [{
     },{
       "id": 2,
       "author": "Leanne Graham",
-      "slot":"start",
+      "slug":"start",
       "thumbnail": "https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y",
       "comment": "Mukesh Ambani net worth to be at $87.4 B or more at 5 PM on 28 Feb?",
       'time':'Mar 7 at 10:26 PM ',
@@ -47,7 +47,7 @@ this.allComments = [{
     },{
       "id": 3,
       "author": "Leanne Graham",
-      "slot":"end",
+      "slug":"end",
       "thumbnail": "https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y",
       "comment": "Mukesh Ambani net worth to be at $87.4 B or more at 5 PM on 28 Feb?",
       'time':'Mar 7 at 10:26 PM ',
@@ -58,7 +58,7 @@ this.allComments = [{
     },{
       "id": 4,
       "author": "Leanne Graham",
-      "slot":"end",
+      "slug":"end",
       "thumbnail": "https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y",
       "comment": "Mukesh Ambani net worth to be at $87.4 B or more at 5 PM on 28 Feb?",
       'time':'Mar 7 at 10:26 PM ',
@@ -69,7 +69,7 @@ this.allComments = [{
     },{
       "id": 1,
       "author": "Leanne Graham",
-      "slot":"end",
+      "slug":"end",
       "thumbnail": "https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y",
       "comment": "Mukesh Ambani net worth to be at $87.4 B or more at 5 PM on 28 Feb?",
       'time':'Mar 7 at 10:26 PM ',
@@ -80,7 +80,7 @@ this.allComments = [{
     },{
       "id": 2,
       "author": "Leanne Graham",
-      "slot":"start",
+      "slug":"start",
       "thumbnail": "https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y",
       "comment": "Mukesh Ambani net worth to be at $87.4 B or more at 5 PM on 28 Feb?",
       'time':'Mar 7 at 10:26 PM ',
@@ -91,7 +91,7 @@ this.allComments = [{
     },{
       "id": 3,
       "author": "Leanne Graham",
-      "slot":"end",
+      "slug":"end",
       "thumbnail": "https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y",
       "comment": "Mukesh Ambani net worth to be at $87.4 B or more at 5 PM on 28 Feb?",
       'time':'Mar 7 at 10:26 PM ',
@@ -102,7 +102,7 @@ this.allComments = [{
     },{
       "id": 4,
       "author": "Leanne Graham",
-      "slot":"end",
+      "slug":"end",
       "thumbnail": "https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y",
       "comment": "Mukesh Ambani net worth to be at $87.4 B or more at 5 PM on 28 Feb?",
       'time':'Mar 7 at 10:26 PM ',

@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { AlertService } from 'src/app/services/alert.service';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -18,7 +19,7 @@ export class LoginPage implements OnInit {
   public buttonName='Submit';
   public useremail='';
   public userotp='';
-  loading = null;
+   loading = null;
 
 
   constructor(
@@ -29,6 +30,8 @@ export class LoginPage implements OnInit {
     private menu: MenuController,
     public loadingController: LoadingController
   ) {
+  
+  
 
   }
 
@@ -45,6 +48,8 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
+  
+  
   this.success=false;
   this.loginStep =1
   }
@@ -103,27 +108,74 @@ export class LoginPage implements OnInit {
   }, 500);
 
   }else{
-  setTimeout(() => {
-  this.useremail = form.value.email;
-  this.success=true;
-  this.message='Please enter one time verification code sent to '+form.value.email
-  this.loginStep =2
-  this.buttonName='Login'
-  this.dismiss();
-  }, 5000);
+  this.authService.validateEmail(form.value.email).subscribe(
+      data => {
+      console.log(data)
+      if(data['success']){
+      this.useremail = form.value.email;
+      this.success=true;
+      this.message=data['message']
+      this.loginStep =2
+      this.buttonName='Login'
+      this.dismiss();
+      }else{
+       this.error=true;
+       this.message=data['message']  
+       this.dismiss();
+      }
+      },
+      error => {
+      this.error=true;
+      this.message=error.message
+      this.dismiss();
+      }
+      
+    );
   }
   }else if(this.loginStep === 2){
   this.userotp = form.value.otp1+form.value.otp2+form.value.otp3+form.value.otp4+form.value.otp5+form.value.otp6;
   if(this.userotp.length <6){
   this.error=true;
   this.message='Please enter valid OTP'
+  this.dismiss();
   }else{
+  
+  
+  this.authService.validateOtp(this.useremail,this.userotp).subscribe(
+      data => {
+      if(data['success']){
+      /*
+      setTimeout(() => {
+      window.location.reload();
+      }, 100);
+      */
+      this.navCtrl.navigateRoot('/landing');
+      console.log(data)
+      this.dismiss();
+      }else{
+       this.error=true;
+       this.message=data['message'] 
+       this.dismiss();
+      }
+      },
+      error => {
+      this.error=true;
+      this.message=error.message
+      this.dismiss();
+      }
+    );
+    
+  
+  
+  /*
   setTimeout(() => {
   this.dismiss();
-  this.authService.login(this.useremail, this.userotp)
+  this.authService.login(this.useremail)
   //this.alertService.presentToast("Logged In");
   this.navCtrl.navigateRoot('/landing');
   }, 5000);
+  
+  */
   }
 
   }
